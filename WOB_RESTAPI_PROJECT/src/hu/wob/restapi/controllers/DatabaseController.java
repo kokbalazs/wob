@@ -124,7 +124,8 @@ public class DatabaseController {
 		System.out.println("Adatbázis csatlakozás zárása.");
 		
 		try {
-			ps.close();
+			if (ps != null)
+				ps.close();
 		} catch (SQLException e) {
 			System.err.println("SQL hiba a Statement zárásakor: " + e.getMessage());
 			e.printStackTrace();
@@ -153,4 +154,28 @@ public class DatabaseController {
 		}
 	}
 
+	public Database getDb() {
+		return db;
+	}
+
+	public void setDb(Database db) {
+		this.db = db;
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
+	public PreparedStatement getPs() {
+		return ps;
+	}
+
+	public void setPs(PreparedStatement ps) {
+		this.ps = ps;
+	}
+	
 }

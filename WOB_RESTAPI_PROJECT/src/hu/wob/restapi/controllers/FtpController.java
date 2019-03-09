@@ -59,11 +59,11 @@ public class FtpController {
 			
 			if (file.exists()) {
 				
-				String remoteFile = file.getAbsolutePath();
+				String remoteFile = file.getName();
 				InputStream inputStream = new FileInputStream(file);
 				
 				try {
-					return ftpClient.storeFile(File.separator + remoteFile, inputStream);
+					return ftpClient.storeFile(remoteFile, inputStream);
 				} finally {
 					inputStream.close();
 				}
@@ -95,5 +95,22 @@ public class FtpController {
 			e.printStackTrace();
 		}
 	}
+
+	public Ftp getFtp() {
+		return ftp;
+	}
+
+	public void setFtp(Ftp ftp) {
+		this.ftp = ftp;
+	}
+
+	public FTPClient getFtpClient() {
+		return ftpClient;
+	}
+
+	public void setFtpClient(FTPClient ftpClient) {
+		this.ftpClient = ftpClient;
+	}
+	
 
 }

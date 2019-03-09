@@ -56,7 +56,7 @@ public class Application {
 	public void run() {
 		
 		//Konfiguráció betöltése
-		if (!Config.Load("config.properties")) {
+		if (!Config.load("config.properties")) {
 			System.err.println("Nem sikerült a beállítások betöltése.");
 			System.exit(1);
 		}

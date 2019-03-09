@@ -18,7 +18,7 @@ public class Config {
 	 * @param configFile - Property fájl helye
 	 * @return - Sikeres-e a betöltés
 	 */
-	public static boolean Load(String configFile) {
+	public static boolean load(String configFile) {
 		
 		FileInputStream stream = null;
 		prop = new java.util.Properties();

@@ -66,32 +66,32 @@ public class ReportController {
 		
 		for (Report rd : reportDatas) {
 			if (!rd.getMonthly()) {
-				report.put("Total listing count", rd.getTotalCount().intValue());
-				report.put("Total eBay listing count", rd.getEbayCount().intValue());
-				report.put("Total eBay listing price", rd.getEbaySum());
-				report.put("Average eBay listing price", rd.getEbayAvg());
-				report.put("Total Amazon listing count", rd.getAmazonCount().intValue());
-				report.put("Total Amazon listing price", rd.getAmazonSum());
-				report.put("Average Amazon listing price", rd.getAmazonAvg());
-				report.put("Best lister email address", rd.getBestEmailAddress());
+				report.put("total_listing_count", rd.getTotalCount().intValue());
+				report.put("total_ebay_count", rd.getEbayCount().intValue());
+				report.put("total_ebay_sum", rd.getEbaySum());
+				report.put("total_ebay_avg", rd.getEbayAvg());
+				report.put("total_amazon_count", rd.getAmazonCount().intValue());
+				report.put("total_amazon_sum", rd.getAmazonSum());
+				report.put("total_amazon_avg", rd.getAmazonAvg());
+				report.put("best_lister_email", rd.getBestEmailAddress());
 			} else {
 				
 				monthlyReport = new JSONObject();
-				monthlyReport.put("Month: ", rd.getMonthString());
-				monthlyReport.put("Total listing count per month", rd.getTotalCount().intValue());
-				monthlyReport.put("Total eBay listing count per month", rd.getEbayCount().intValue());
-				monthlyReport.put("Total eBay listing price per month", rd.getEbaySum());
-				monthlyReport.put("Average eBay listing price per month", rd.getEbayAvg());
-				monthlyReport.put("Total Amazon listing count per month", rd.getAmazonCount().intValue());
-				monthlyReport.put("Total Amazon listing price per month", rd.getAmazonSum());
-				monthlyReport.put("Average Amazon listing price per month", rd.getAmazonAvg());
-				monthlyReport.put("Best lister email address of the month", rd.getBestEmailAddress());
+				monthlyReport.put("month_id", rd.getMonthString());
+				monthlyReport.put("monthly_total_listing_count", rd.getTotalCount().intValue());
+				monthlyReport.put("monthly_total_ebay_count", rd.getEbayCount().intValue());
+				monthlyReport.put("monthly_total_ebay_sum", rd.getEbaySum());
+				monthlyReport.put("monthly_total_ebay_avg", rd.getEbayAvg());
+				monthlyReport.put("monthly_total_amazon_count", rd.getAmazonCount().intValue());
+				monthlyReport.put("monthly_total_amazon_sum", rd.getAmazonSum());
+				monthlyReport.put("monthly_total_amazon_avg", rd.getAmazonAvg());
+				monthlyReport.put("monthly_best_lister_email", rd.getBestEmailAddress());
 				monthlyReportArray.add(monthlyReport);
 				
 			}
 		}
 		
-		report.put("Monthly reports:",monthlyReportArray);
+		report.put("monthly_reports",monthlyReportArray);
 		
 		return report.toJSONString();
 		

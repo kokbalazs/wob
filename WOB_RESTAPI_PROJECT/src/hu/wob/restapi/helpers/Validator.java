@@ -154,7 +154,45 @@ public class Validator {
 		validationErrors.add(validationError);
 		
 	}
-	
-	
+
+	public Listing getListing() {
+		return listing;
+	}
+
+	public void setListing(Listing listing) {
+		this.listing = listing;
+	}
+
+	public Set<ValidationError> getValidationErrors() {
+		return validationErrors;
+	}
+
+	public void setValidationErrors(Set<ValidationError> validationErrors) {
+		this.validationErrors = validationErrors;
+	}
+
+	public Set<Marketplace> getMarketplaces() {
+		return marketplaces;
+	}
+
+	public void setMarketplaces(Set<Marketplace> marketplaces) {
+		this.marketplaces = marketplaces;
+	}
+
+	public Set<ListingStatus> getListingStatuses() {
+		return listingStatuses;
+	}
+
+	public void setListingStatuses(Set<ListingStatus> listingStatuses) {
+		this.listingStatuses = listingStatuses;
+	}
+
+	public Set<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(Set<Location> locations) {
+		this.locations = locations;
+	}
 
 }
