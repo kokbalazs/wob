@@ -22,7 +22,6 @@ public class Report implements Comparable<Report>{
 	
 	
 	public Report() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Boolean getMonthly() {

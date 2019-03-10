@@ -8,16 +8,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import hu.wob.restapi.application.Config;
+import hu.wob.restapi.constants.IConstants;
 import hu.wob.restapi.models.Ftp;
 
 class FtpControllerTest {
 	
-	File jsonFile;
-	Ftp ftp;
+	private File jsonFile;
+	private Ftp ftp;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		Config.load("config.properties");
+		Config.load(IConstants.configFile);
 		jsonFile = new File(Config.getProperty("JSON_REPORT_LOCATION") + File.separator + Config.getProperty("JSON_REPORT_NAME"));
 		if (!jsonFile.exists()) {
 			jsonFile.createNewFile();

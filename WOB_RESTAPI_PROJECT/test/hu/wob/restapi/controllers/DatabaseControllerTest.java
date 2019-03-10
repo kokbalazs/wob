@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import hu.wob.restapi.application.Config;
+import hu.wob.restapi.constants.IConstants;
+import hu.wob.restapi.constants.IQueries;
 import hu.wob.restapi.models.Database;
 
 class DatabaseControllerTest {
@@ -19,7 +21,7 @@ class DatabaseControllerTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		Config.load("config.properties");
+		Config.load(IConstants.configFile);
 		db = new Database();
 		db.setDbUrl(Config.getProperty("JDBC_URL"));
 		db.setDbUser(Config.getProperty("JDBC_USER"));
@@ -47,12 +49,10 @@ class DatabaseControllerTest {
 		dc = new DatabaseController(db);
 		dc.connect();
 		
-		String testQuery = "SELECT 1 FROM valamitabla";
+		String testQuery = IQueries.testPrepareQuery;
 		dc.prepareQuery(testQuery);
 		
 		assertEquals(testQuery, dc.getPs().toString());
-		
-		
 	}
 
 	@Test
@@ -72,7 +72,7 @@ class DatabaseControllerTest {
 		dc = new DatabaseController(db);
 		dc.connect();
 		
-		ResultSet rs = dc.executeQuery("SELECT 1 FROM listing");
+		ResultSet rs = dc.executeQuery(IQueries.testExecuteQuery);
 		
 		try {
 			assertEquals(Boolean.TRUE, rs.next());

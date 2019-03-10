@@ -18,4 +18,8 @@ public interface IQueries {
 			"	VALUES (?::uuid, ?, ?, ?, ?, ?, ?, ?);";
 	public static final String listingInsert = "INSERT INTO listing(id, title, description, inventory_item_location_id, listing_price, currency, quantity, listing_status, marketplace, upload_time, owner_email_address) " + 
 			"	VALUES (?::uuid, ?, ?, ?::uuid, ?, ?, ?, ?, ?, ?::date, ?);";
+	
+	//Tesztek
+	public static final String testPrepareQuery = "SELECT 1 FROM valamitabla";
+	public static final String testExecuteQuery = "SELECT 1 FROM listing";
 }

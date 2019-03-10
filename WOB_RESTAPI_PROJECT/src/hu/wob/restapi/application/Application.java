@@ -23,6 +23,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import hu.wob.restapi.constants.IConstants;
 import hu.wob.restapi.constants.IQueries;
 import hu.wob.restapi.controllers.DatabaseController;
 import hu.wob.restapi.controllers.FtpController;
@@ -55,10 +56,14 @@ public class Application {
 	 */
 	public void run() {
 		
+		System.out.println("Program indítása.");
+		
 		//Konfiguráció betöltése
-		if (!Config.load("config.properties")) {
+		if (!Config.load(IConstants.configFile)) {
 			System.err.println("Nem sikerült a beállítások betöltése.");
 			System.exit(1);
+		} else {
+			System.out.println("Beállításokat sikeresen betöltöttem.");
 		}
 		
 		//REST API hívása, és adatok kiolvasása
@@ -89,11 +94,12 @@ public class Application {
 			rc.getReportData(dc.executeQuery(IQueries.mainReportQuery), reportDatas, Boolean.FALSE);
 			rc.getReportData(dc.executeQuery(IQueries.monthlyReportQuery), reportDatas, Boolean.TRUE);
 			dc.disconnect();
+			System.out.println("Riport készítése");
 			String jsonReport = rc.getJsonString(reportDatas);
-			System.out.println("Json String: " + jsonReport);
+			System.out.println("Riport Json String: " + jsonReport);
 			
 			String jsonFile = rc.createJsonFile(jsonReport);
-			System.out.println("Fájl helye: " + jsonFile);
+			System.out.println("Elkészült riport fájl helye: " + jsonFile);
 			
 			//Riport fájl feltöltése FTP-re
 			if (!jsonFile.equals("")) {
@@ -115,15 +121,15 @@ public class Application {
 					fc.disconnect();
 				} else {
 					System.out.println("Sikertelen csatlakozás.");
-				}
-				
+				}	
+			} else {
+				System.out.println("Üres a jsonFile String.");
 			}
-			
-			
 		} else {
 			System.out.println("Nem sikerült csatlakozni az adatbázishoz.");
 		}
 		
+		System.out.println("Program vége.");
 	}
 	
 	/**
@@ -131,6 +137,8 @@ public class Application {
 	 * @param dc - Adatbázis kezelõ
 	 */
 	private void saveDataToDatabase(DatabaseController dc) {
+		System.out.println("Adatok mentése az adatbázisba.");
+		
 		String insertQuery = "";
 		
 		//Marketplace-k letárolása
@@ -147,7 +155,7 @@ public class Application {
 		dc.prepareQuery(insertQuery);
 		for (ListingStatus listingStatus : listingstatuses) {
 			dc.addToStatement(1, listingStatus.getId());
-			dc.addToStatement(2, listingStatus.getStatus_name());
+			dc.addToStatement(2, listingStatus.getStatusName());
 			dc.executeStatement();
 		}
 		
@@ -204,7 +212,7 @@ public class Application {
 		if (validationErrors.size() > 0) {
 			System.out.println("Nem valid sorok kiírása CSV fájlba");
 			writeErrorsToCsv(validationErrors);
-			System.out.println("Nem valid sorok kiírása CSV fájlba elkészült");
+			System.out.println("Nem valid sorok kiírása CSV fájlba elkészült: " + Config.getProperty("CSV_LOCATION") + Config.getProperty("CSV_NAME"));
 		}
 	}
 
@@ -234,9 +242,6 @@ public class Application {
 			
 		} catch (FileNotFoundException e) {
 			System.err.println("Hiba, nincs ilyen fájl: " + e.getMessage());
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.err.println("IO hiba: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

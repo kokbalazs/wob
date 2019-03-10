@@ -8,7 +8,7 @@ package hu.wob.restapi.models;
 public class ListingStatus {
 
 	private Long id;
-	private String status_name;
+	private String statusName;
 
 	public ListingStatus() {
 	}
@@ -21,12 +21,12 @@ public class ListingStatus {
 		this.id = id;
 	}
 
-	public String getStatus_name() {
-		return status_name;
+	public String getStatusName() {
+		return statusName;
 	}
 
-	public void setStatus_name(String status_name) {
-		this.status_name = status_name;
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
 	}
 
 }

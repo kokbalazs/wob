@@ -10,27 +10,18 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import hu.wob.restapi.constants.IConstants;
+
 class ConfigTest {
-
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
 
 	@Test
 	void testLoad() {
-		
-		boolean actual = Config.load("config.properties");
-		
-		assertEquals(Boolean.TRUE, actual);
+		assertEquals(Boolean.TRUE, Config.load(IConstants.configFile));
 	}
 
 	@Test
 	void testGetProperty() {
-		Config.load("config.properties");
+		Config.load(IConstants.configFile);
 		
 		assertEquals("https://my.api.mockaroo.com/@class?key=63304c70", Config.getProperty("BASE_URL"));
 		assertEquals("jsonReport.json", Config.getProperty("JSON_REPORT_NAME"));

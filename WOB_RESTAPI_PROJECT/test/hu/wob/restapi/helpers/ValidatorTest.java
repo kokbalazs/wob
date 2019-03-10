@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import hu.wob.restapi.application.Config;
+import hu.wob.restapi.constants.IConstants;
 import hu.wob.restapi.models.Listing;
 import hu.wob.restapi.models.ListingStatus;
 import hu.wob.restapi.models.Location;
@@ -21,18 +22,16 @@ class ValidatorTest {
 	private Set<Marketplace> marketplaces;
 	private Set<Location> locations;
 	private Set<ListingStatus> listingStatuses;
-	private Set<Listing> listings;
 	private MockarooParser mockarooParser;
 	private Validator validator;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		Config.load("config.properties");
+		Config.load(IConstants.configFile);
 		mockarooParser = new MockarooParser();
 		marketplaces = mockarooParser.getMarketPlaces();
 		listingStatuses = mockarooParser.getListingStatuses();
 		locations = mockarooParser.getLocations();
-		listings = mockarooParser.getListings();
 	}
 
 	@Test

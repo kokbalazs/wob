@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import hu.wob.restapi.application.Config;
+import hu.wob.restapi.constants.IConstants;
 import hu.wob.restapi.models.Listing;
 import hu.wob.restapi.models.ListingStatus;
 import hu.wob.restapi.models.Location;
@@ -20,11 +21,11 @@ import hu.wob.restapi.models.Marketplace;
 
 class MockarooParserTest {
 	
-	MockarooParser mockarooParser;
+	private MockarooParser mockarooParser;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		Config.load("config.properties");
+		Config.load(IConstants.configFile);
 		mockarooParser = new MockarooParser();
 	}
 

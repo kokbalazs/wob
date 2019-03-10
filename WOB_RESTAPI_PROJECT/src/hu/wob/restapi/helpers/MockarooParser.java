@@ -56,7 +56,7 @@ public class MockarooParser {
 			int responseCode = con.getResponseCode();
 			
 			if (responseCode != 200) {
-				System.out.println("Responsecode: " + responseCode);
+				System.out.println("Nem sikerült a csatlakozás, HTTP kód: " + responseCode);
 				return "";
 			}
 						
@@ -143,7 +143,7 @@ public class MockarooParser {
 				
 				ListingStatus listingStatus = new ListingStatus();
 				listingStatus.setId((Long) obj.get("id"));
-				listingStatus.setStatus_name((String) obj.get("status_name"));
+				listingStatus.setStatusName((String) obj.get("status_name"));
 				ret.add(listingStatus);
 				
 			}

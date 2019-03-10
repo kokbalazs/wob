@@ -6,6 +6,8 @@ import java.io.File;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.Icon;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import hu.wob.restapi.application.Config;
+import hu.wob.restapi.constants.IConstants;
 import hu.wob.restapi.constants.IQueries;
 import hu.wob.restapi.models.Database;
 import hu.wob.restapi.models.Report;
@@ -23,7 +26,7 @@ class ReportControllerTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		Config.load("config.properties");
+		Config.load(IConstants.configFile);
 		Database db = new Database();
 		db.setDbUrl(Config.getProperty("JDBC_URL"));
 		db.setDbUser(Config.getProperty("JDBC_USER"));
